@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Face : Align
 {
-    // TODO: override Align's getTargetAngle to face the target instead of matching it's orientation
+    // override Align's getTargetAngle to face the target instead of matching it's orientation
     public override float getTargetAngle()
     {
-        // --- replace me ---
-        float targetAngle = 0f;
-        // ------------------
+        Vector3 direction = target.transform.position - character.transform.position;
+        float targetAngle = 180 - Mathf.Atan2(-direction.x, direction.z) * Mathf.Rad2Deg;
 
         return targetAngle;
     }

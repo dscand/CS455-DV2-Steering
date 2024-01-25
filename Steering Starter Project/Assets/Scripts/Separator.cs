@@ -1,27 +1,27 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Seeker : Kinematic
+public class Separator : Kinematic
 {
-    Seek myMoveType;
-    Face mySeekRotateType;
+    Separation myMoveType;
+    LookWhereGoing mySeparationRotateType;
     LookWhereGoing myFleeRotateType;
 
     public bool flee = false;
+	public Kinematic[] targets;
 
     // Start is called before the first frame update
     void Start()
     {
-        myMoveType = new Seek();
+        myMoveType = new Separation();
         myMoveType.character = this;
-        myMoveType.target = myTarget;
-        myMoveType.flee = flee;
+        myMoveType.targets = targets;
+        //myMoveType.flee = flee;
 
-        mySeekRotateType = new Face();
-        mySeekRotateType.character = this;
-        mySeekRotateType.target = myTarget;
-		mySeekRotateType.maxRotation = maxAngularVelocity;
+        mySeparationRotateType = new LookWhereGoing();
+        mySeparationRotateType.character = this;
+        mySeparationRotateType.target = myTarget;
 
         myFleeRotateType = new LookWhereGoing();
         myFleeRotateType.character = this;
@@ -33,7 +33,7 @@ public class Seeker : Kinematic
     {
         steeringUpdate = new SteeringOutput();
         steeringUpdate.linear = myMoveType.getSteering().linear;
-        steeringUpdate.angular = flee ? myFleeRotateType.getSteering().angular : mySeekRotateType.getSteering().angular;
+        steeringUpdate.angular = flee ? myFleeRotateType.getSteering().angular : mySeparationRotateType.getSteering().angular;
         base.Update();
     }
 }
