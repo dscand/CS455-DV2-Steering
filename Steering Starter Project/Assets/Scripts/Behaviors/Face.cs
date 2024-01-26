@@ -8,7 +8,7 @@ public class Face : Align
     public override float getTargetAngle()
     {
         Vector3 direction = target.transform.position - character.transform.position;
-        float targetAngle = 180 - Mathf.Atan2(-direction.x, direction.z) * Mathf.Rad2Deg;
+        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
 
         return targetAngle;
     }
